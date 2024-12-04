@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="stylesheet" href="assets/src/css/general/navbar.css">
+    <link rel="stylesheet" href="assets/src/css/pages/contact.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li>
+                <img src="assets/images/logo.png" alt="">
+            </li>
+            <li><a href="index.html" style="font-weight: 800;">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li>
+                <button>
+                    <a href="#">Contact Me</a>
+                </button>
+            </li>
+        </ul>
+    </nav>
+    <form>
+        <label for="">
+            <h1>GET IN TOUCH</h1>
+        </label>
+        <label for="name">Name  <input type="text" autocomplete="off" name="name" id="name" /></label>
+        <label for="email">Email  <input type="email" autocomplete="off" name="email" id="email"></label>
+        <label for="phone">Phone Number <input type="number" autocomplete="off" name="phone" id="phone"></label>
+        <label for="subject"> Subject 
+            <select id="subject" autocomplete="off" name="subject">
+                <option value="Fullstack Developer">FullStack Developer</option>
+                <option value="FrontEnd Developer">FrontEnd Developer</option>
+                <option value="BackEnd Developer">BackEnd Developer</option>
+            </select>      
+        </label>
+        <label for="message">Your Message
+        <textarea id="message" autocomplete="off" name="message" rows="3" cols="30"></textarea>
+        </label>
+        <button type="submit">Submit</button>
+</body>
+</html>

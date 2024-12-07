@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog Page</title>
+    <link rel="stylesheet" href="assets/src/css/general/navbar.css" />
+    <link rel="stylesheet" href="assets/src/css/pages/blog.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li>
+          <img src="assets/images/logo.png" alt="" />
+        </li>
+        <li><a href="index.html" style="font-weight: 800">Home</a></li>
+        <li><a href="#">Blog</a></li>
+        <li>
+          <button>
+            <a href="contact.html">Contact Me</a>
+          </button>
+        </li>
+      </ul>
+    </nav>
+
+    <main>
+      <h1>Add My Project</h1>
+      <form>
+        <label for="name"
+          >Project Name
+          <input
+            type="text"
+            id="name"
+            placeholder="Enter project name"
+            autocomplete="off"
+            required
+          />
+        </label>
+
+        <div class="date-container">
+          <label for="start-date" class="date" style="width: 100%"
+            >Start Date
+            <input type="date" id="start-date" style="width: 90%" required/>
+          </label>
+          <label for="end-date" class="date" style="width: 100%"
+            >End Date
+            <input type="date" id="end-date" style="width: 100%" required/>
+          </label>
+        </div>
+
+        <label for="description"
+          >Description
+          <textarea
+            id="description"
+            rows="8"
+            placeholder="Enter project description"
+            required
+          ></textarea>
+        </label>
+
+        <label>Technologies</label>
+        <div class="tech-options">
+          <label
+            ><input
+              type="checkbox"
+              name="tech"
+              value="Node Js"
+              class="checkbox"
+            />
+            Node Js</label
+          >
+          <label
+            ><input
+              type="checkbox"
+              name="tech"
+              value="Next Js"
+              class="checkbox"
+            />
+            Next Js</label
+          >
+          <label
+            ><input
+              type="checkbox"
+              name="tech"
+              value="React Js"
+              class="checkbox"
+            />
+            React Js</label
+          >
+          <label
+            ><input
+              type="checkbox"
+              name="tech"
+              value="TypeScript"
+              class="checkbox"
+            />
+            TypeScript</label
+          >
+        </div>
+
+        <label for="image"
+          >Upload Image
+          <input type="file" id="image" required/>
+          <i class="fas fa-paperclip"></i>
+        </label>
+
+        <button type="submit" class="submit-btn">Submit</button>
+      </form>
+
+      <!-- blog section -->
+      <section class="blog-container">
+      </section>
+    </main>
+
+    <script src="assets/src/js/blog.js"></script>
+    <script src="assets/src/js/renderBlog.js"></script>
+  </body>
+</html>

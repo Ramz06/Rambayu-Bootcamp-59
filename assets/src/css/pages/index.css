@@ -17,6 +17,7 @@ body {
     padding: 19px;
     border-radius: 10px;
     display: flex;
+    flex-wrap: wrap;
     gap: 30px;
     justify-content: center;
     align-items: center;
@@ -102,4 +103,21 @@ a {
     height: 300px;
     object-fit: cover;
     border-radius: 10px 10px 0 0;
+}
+
+/* media queries */
+@media screen and (max-width: 500px) {
+    .profile {
+        height: 100%;
+        width: 100%;
+        margin: 10vh 0 0;
+    }
+
+    .profile-text {
+        width: 85%;
+    }
+
+    .profile-card {
+        width: 70%;
+    }
 }

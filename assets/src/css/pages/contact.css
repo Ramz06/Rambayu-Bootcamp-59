@@ -14,8 +14,9 @@ body {
 }
 
 form {
-  margin: 20px auto;
-  width: 40%;
+  margin: 20px auto 0;
+  width: 100%;
+  max-width: 600px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -55,4 +56,10 @@ button {
     padding: 5px 10px;
     border-radius: 8px;
     cursor: pointer;
+}
+
+@media screen and (max-width: 596px) {
+  h1 {
+    margin-top: 30px;
+  }
 }

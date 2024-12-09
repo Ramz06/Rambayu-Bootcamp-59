@@ -11,18 +11,26 @@
   </head>
   <body>
     <nav>
+        <div class="logo">
+            <img src="assets/images/logo.png" alt="">
+        </div>
+        
         <ul>
-            <li>
-                <img src="assets/images/logo.png" alt="">
-            </li>
             <li><a href="index.html" style="font-weight: 800;">Home</a></li>
-            <li><a href="about.html">About</a></li>
+            <li><a href="blog.html">Blog</a></li>
             <li>
                 <button>
                     <a href="#">Contact Me</a>
                 </button>
             </li>
         </ul>
+
+        <div class="menu-toggle">
+            <input type="checkbox" name="" id="">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </nav>
     <div class="profile">
         <section class="profile-text">
@@ -48,3 +56,15 @@
             <h3>Rambayu Rimbajati</h3>
             <p>Fullstack Developer</p>
         </section>
+
+    <script>
+        const slideMenu = document.querySelector('nav ul')
+        const menuToggle = document.querySelector('input[type="checkbox"]')
+
+        console.log(menuToggle)
+        menuToggle.addEventListener('click', function() {
+            console.log(slideMenu)
+            slideMenu.classList.toggle('slide')
+        })
+    </script>
+    </body>

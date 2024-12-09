@@ -9,10 +9,11 @@
 </head>
 <body>
     <nav>
+        <div class="logo">
+            <img src="assets/images/logo.png" alt="">
+        </div>
+
         <ul>
-            <li>
-                <img src="assets/images/logo.png" alt="">
-            </li>
             <li><a href="index.html" style="font-weight: 800;">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li>
@@ -21,6 +22,13 @@
                 </button>
             </li>
         </ul>
+
+        <div class="menu-toggle">
+            <input type="checkbox" name="" id="">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </nav>
     <form>
         <label for="">
@@ -42,5 +50,14 @@
         <button type="submit">Submit</button>
 
     <script src="assets/src/js/contact.js"></script>
+    <script>
+        const slideMenu = document.querySelector('nav ul')
+        const menuToggle = document.querySelector('input[type="checkbox"]')
+
+        console.log(menuToggle)
+        menuToggle.addEventListener('click', function() {
+            slideMenu.classList.toggle('slide')
+        })
+    </script>
 </body>
 </html>

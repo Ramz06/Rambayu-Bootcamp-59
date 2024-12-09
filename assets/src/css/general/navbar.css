@@ -1,59 +1,165 @@
 nav {
-    width: 100%;
-    background-color: white;
-    height: 10vh;
+  width: 100%;
+  background-color: #fff;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+}
+
+nav .logo {
+  list-style-type: none;
+  width: 5%;
+  margin: 0 30px;
+}
+
+nav .logo img {
+  width: 100%;
 }
 
 nav ul {
-    display: flex;
-    height: 100%;
-    align-items: center;
-    gap: 22px;
+  display: flex;
+  height: 100%;
+  width: 95%;
+  align-items: center;
+  gap: 22px;
 }
 
 nav ul li {
-    list-style-type: none;
-}
-
-nav ul li:first-child {
-    list-style-type: none;
-    width: 5%;
-    margin-left: 30px;
-}
-
-nav ul li img{
-    width: 100%;
+  list-style-type: none;
 }
 
 nav ul li a {
-    color: #000;
-    text-decoration: none;
+  color: #000;
+  text-decoration: none;
 }
 
 nav ul li a:hover {
-    color: rgba(0, 0, 0, .6);
+  color: rgba(0, 0, 0, 0.6);
 }
 
-nav ul li:last-child{
-    margin-left: auto;
-    margin-right: 30px;
-    justify-self: flex-end;
+nav ul li:last-child {
+  margin-left: auto;
+  margin-right: 30px;
+  justify-self: flex-end;
 }
 
 nav ul li button {
-    margin-left: auto;
-    align-self: flex-end;
-    background-color: #000;
-    padding: 5px 18px;
-    border-radius: 8px;
+  margin-left: auto;
+  align-self: flex-end;
+  background-color: #000;
+  padding: 5px 18px;
+  border-radius: 8px;
 }
 
 nav ul li button a {
-    color: #fff;
-    text-decoration: none;
+  color: #fff;
+  text-decoration: none;
 }
 
 nav ul li button a:hover {
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Hamburger Menu */
+.menu-toggle {
+  display: none;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 20px;
+  position: relative;
+}
+
+.menu-toggle input {
+  position: absolute;
+  width: 40px;
+  height: 28px;
+  opacity: 0;
+  top: -4px;
+  left: -6px;
+  cursor: pointer;
+  z-index: 4;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 28px;
+  height: 3px;
+  background-color: rgb(223, 211, 223);
+  border-radius: 3px;
+  transition: all 0.39s;
+}
+
+/* media query */
+@media screen and (max-width: 500px) {
+  nav {
+    background-color: #000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+  }
+
+  nav .logo {
+    width: 12%;
+    z-index: 10;
+  }
+
+  nav ul {
+    display: flex;
+    height: 30vh;
+    width: 100%;
+    margin-top: 12%;
+    justify-content: space-around;
+    position: fixed;
+    flex-direction: column;
+    right: 0;
+    top: 0;
+    gap: 0;
+    align-items: center;
+    z-index: 10;
+    background-color: #000;
+    overflow-x: hidden;
+    transform: translateY(-200%);
+    transition: all 0.3s ease-in-out;
+  }
+
+  nav ul li {
+    display: flex;
+    border-top: 3px solid rgb(240, 224, 240);
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .menu-toggle {
+    display: flex;
+    margin-left: auto;
+    z-index: 3;
+  }
+
+  nav ul.slide {
+    transform: translateY(0);
+  }
+
+  nav ul li a {
     color: #fff;
-    cursor: pointer;
+  }
+
+  nav ul li a:hover {
+    color: #d8d3d3;
+  }
+
+  nav ul li button {
+    background-color: #464141;
+    margin: auto;
+  }
+
+  nav ul li button a {
+    color: #fff;
+  }
 }

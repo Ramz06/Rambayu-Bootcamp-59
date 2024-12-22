@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blog Page</title>
-    <link rel="stylesheet" href="src/css/general/navbar.css" />
-    <link rel="stylesheet" href="src/css/pages/blog.css" />
+    <link rel="stylesheet" href="assets/src/css/general/navbar.css" />
+    <link rel="stylesheet" href="assets/src/css/pages/blog.css" />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
       rel="stylesheet"
@@ -15,12 +15,13 @@
     {{> nav }}
     <main>
       <h1>Add My Project</h1>
-      <form>
+      <form method="post" action="/blog" enctype="multipart/form-data">
         <label for="name"
           >Project Name
           <input
             type="text"
             id="name"
+            name="title"
             placeholder="Enter project name"
             autocomplete="off"
             required
@@ -30,11 +31,11 @@
         <div class="date-container">
           <label for="start-date" class="date" style="width: 100%"
             >Start Date
-            <input type="date" id="start-date" style="width: 90%" required/>
+            <input type="date" id="start-date" name="startdate" style="width: 90%" required/>
           </label>
           <label for="end-date" class="date" style="width: 100%"
             >End Date
-            <input type="date" id="end-date" style="width: 100%" required/>
+            <input type="date" id="end-date" name="enddate" style="width: 100%" required/>
           </label>
         </div>
 
@@ -44,6 +45,7 @@
             id="description"
             rows="8"
             placeholder="Enter project description"
+            name="description"
             required
           ></textarea>
         </label>
@@ -90,20 +92,41 @@
 
         <label for="image"
           >Upload Image
-          <input type="file" id="image" required/>
+          <input type="file" id="image" name="imageurl" required/>
           <i class="fas fa-paperclip"></i>
         </label>
 
-        <button type="submit" class="submit-btn">Submit</button>
+        <button type="submit" class="submit-btn" name="submit">Submit</button>
       </form>
 
       <!-- blog section -->
+      {{#if blogs}}  
       <section class="blog-container">
+      <h1>MY Blogs</h1>
+        {{#each blogs}}
+      <div class="blog-card">
+        <img src="assets/uploads/{{imageurl}}" />
+        <h3><a href="/blog-detail/{{id}}">{{title}}</a></h3>
+        <p>Duration : {{startdate}}</p>
+        <p>{{description}}</p>
+        <div class="tech-icons">
+          <i class="fab fa-node"></i> 
+          <img src="https://nextjs.org/static/favicon/favicon.ico" alt="Next.js" style="height: 30px; width: 30px;" />
+          <i class="fab fa-react"></i>
+          <img src="https://www.typescriptlang.org/favicon-32x32.png" alt="TypeScript" style="height: 30px; width: 30px;" />
+        </div>
+        <div class="actions">
+          <button class="edit-btn">Edit</button>
+          <button class="delete-btn">Delete</button>
+        </div>
+      </div>
+    {{/each}}
       </section>
+      {{/if}}
     </main>
 
-    <script src="assets/src/js/blog.js"></script>
-    <script src="assets/src/js/renderBlog.js"></script>
+    {{!-- <script src="assets/src/js/blog.js"></script>
+    <script src="assets/src/js/renderBlog.js"></script> --}}
     <script>
       const slideMenu = document.querySelector('nav ul')
       const menuToggle = document.querySelector('input[type="checkbox"]')

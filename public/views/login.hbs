@@ -1,0 +1,96 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      .form-container { background-color: #000; /* Background hitam */ padding:
+      30px; border-radius: 10px; width: 100%; max-width: 400px; margin: 50px
+      auto; color: #fff; /* Text putih */ } .form-control { background-color:
+      #fff; /* Input putih */ color: #000; /* Text hitam di input */ }
+      .form-control:focus { box-shadow: none; /* Hilangkan shadow fokus */ }
+      .form-container .alert { display: flex; align-items: center; padding:
+      15px; border-radius: 5px; word-wrap: break-word; /* Untuk memastikan teks
+      panjang tidak keluar */ } .form-container .alert svg { margin-right: 10px;
+      /* Tambahkan jarak antara ikon dan teks */ } .form-container .alert ul {
+      margin: 0; padding-left: 20px; /* Tambahkan indentasi pada daftar */ }
+    </style>
+  </head>
+  <body class="bg-dark text-light">
+    <div class="form-container">
+      <h2 class="text-center mb-4">Login</h2>
+      {{#if errors}}
+        <div class="alert alert-danger d-flex align-items-start" role="alert">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="currentColor"
+            class="bi flex-shrink-0 me-2"
+            viewBox="0 0 16 16"
+            aria-label="Danger:"
+          >
+          </svg>
+          <div>
+            <ul>
+              {{#each errors}}
+                <li>{{this.msg}}</li>
+              {{/each}}
+            </ul>
+          </div>
+        </div>
+      {{/if}}
+      <form action="/api/users" method="post">
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            placeholder="Enter your username"
+            name="username"
+            autocomplete="off"
+            required
+            autofocus
+          />
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="Enter your email"
+            name="email"
+            autocomplete="off"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Enter your password"
+            name="password"
+            autocomplete="off"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-dark w-100">Login</button>
+        <p>not have a account? <a href="/users/register">register</a> here</p>
+      </form>
+    </div>
+
+    <!-- Bootstrap Bundle JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    ></script>
+  </body>
+</html>

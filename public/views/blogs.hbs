@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blogs</title>
+    <link rel="stylesheet" href="/assets/css/general/navbar.css" />
+    <link rel="stylesheet" href="/assets/css/pages/blog.css" />
+</head>
+<body>
+    {{> nav }}
+    {{#if blogs}}  
+      <section class="blog-container">
+      <h1>MY Blogs</h1>
+        {{#each blogs}}
+      <div class="blog-card">
+        <img src="assets/uploads/{{imageurl}}" />
+        <h3><a href="/blog-detail/{{id}}">{{title}}</a></h3>
+        <p>Duration : {{startdate}}</p>
+        <p>{{description}}</p>
+        <div class="tech-icons">
+          <i class="fab fa-node"></i> 
+          <img src="https://nextjs.org/static/favicon/favicon.ico" alt="Next.js" style="height: 30px; width: 30px;" />
+          <i class="fab fa-react"></i>
+          <img src="https://www.typescriptlang.org/favicon-32x32.png" alt="TypeScript" style="height: 30px; width: 30px;" />
+        </div>
+        <div class="actions">
+          <button class="edit-btn">Edit</button>
+          <button class="delete-btn">Delete</button>
+        </div>
+      </div>
+    {{/each}}
+      </section>
+      {{/if}}
+    </main>
+
+    <script>
+      const slideMenu = document.querySelector('nav ul')
+      const menuToggle = document.querySelector('input[type="checkbox"]')
+
+      console.log(menuToggle)
+      menuToggle.addEventListener('click', function() {
+          slideMenu.classList.toggle('slide')
+      })
+    </script>
+</body>
+</html>

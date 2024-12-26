@@ -144,6 +144,15 @@ img {
   object-fit: cover;
 }
 
+.blog-card h3 a {
+  color: black
+}
+
+.blog-card h3 a:hover {
+  color: rgba(0, 0, 0, 0.6);
+  text-decoration: none;
+}
+
 .tech-icons {
   display: flex;
   width: 100%;

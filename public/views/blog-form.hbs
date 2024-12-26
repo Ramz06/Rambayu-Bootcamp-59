@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blog Page</title>
-    <link rel="stylesheet" href="assets/src/css/general/navbar.css" />
-    <link rel="stylesheet" href="assets/src/css/pages/blog.css" />
+    <link rel="stylesheet" href="assets/css/general/navbar.css" />
+    <link rel="stylesheet" href="assets/css/pages/blog.css" />
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
       rel="stylesheet"
@@ -15,7 +15,7 @@
     {{> nav }}
     <main>
       <h1>Add My Project</h1>
-      <form method="post" action="/blog" enctype="multipart/form-data">
+      <form method="post" action="/api/blogs" enctype="multipart/form-data">
         <label for="name"
           >Project Name
           <input
@@ -39,13 +39,13 @@
           </label>
         </div>
 
-        <label for="description"
+        <label for="content"
           >Description
           <textarea
-            id="description"
+            id="content"
             rows="8"
-            placeholder="Enter project description"
-            name="description"
+            placeholder="Enter project content"
+            name="content"
             required
           ></textarea>
         </label>
@@ -100,31 +100,6 @@
       </form>
 
       <!-- blog section -->
-      {{#if blogs}}  
-      <section class="blog-container">
-      <h1>MY Blogs</h1>
-        {{#each blogs}}
-      <div class="blog-card">
-        <img src="assets/uploads/{{imageurl}}" />
-        <h3><a href="/blog-detail/{{id}}">{{title}}</a></h3>
-        <p>Duration : {{startdate}}</p>
-        <p>{{description}}</p>
-        <div class="tech-icons">
-          <i class="fab fa-node"></i> 
-          <img src="https://nextjs.org/static/favicon/favicon.ico" alt="Next.js" style="height: 30px; width: 30px;" />
-          <i class="fab fa-react"></i>
-          <img src="https://www.typescriptlang.org/favicon-32x32.png" alt="TypeScript" style="height: 30px; width: 30px;" />
-        </div>
-        <div class="actions">
-          <button class="edit-btn">Edit</button>
-          <button class="delete-btn">Delete</button>
-        </div>
-      </div>
-    {{/each}}
-      </section>
-      {{/if}}
-    </main>
-
     {{!-- <script src="assets/src/js/blog.js"></script>
     <script src="assets/src/js/renderBlog.js"></script> --}}
     <script>

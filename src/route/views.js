@@ -13,6 +13,7 @@ const blogs = async (req, res) => {
     try {
         const result = await Blog.findAll();
         const blogs = result;
+
         res.render("blogs", { blogs })
       } catch (err) {
         console.error(err.message);
@@ -29,6 +30,7 @@ const blogDetail = async (req, res) => {
   try {
     const result = await Blog.findByPk(id);
     const blog = result;
+
     res.render("blog-detail", {blog});
   } catch (err) {
     console.error(err.message);

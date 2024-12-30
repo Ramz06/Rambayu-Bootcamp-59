@@ -7,6 +7,7 @@ const view = require("./route/views")
 const { registerUserValidation, loginUserValidation } = require("./validation/user-validation")
 const userService = require("./service/user-service")
 const blogService = require("./service/blog-service")
+
 const port = 3000;
 
 app.set("views", path.join(__dirname, '..', 'public', 'views'));
@@ -35,6 +36,7 @@ app.post("/api/blogs", uploadFile.single('imageurl'), blogService.addBlog);
 app.post("/users/register", registerUserValidation , userService.register);
 
 app.put('/blogs/:id', uploadFile.single('imageurl'), blogService.updateBlog);
+
 
 // post function
 app.use("/", function (req, res) {

@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const { v4: uuid } = require('uuid');
 const { registerUserValidation, loginUserValidation } = require('../validation/user-validation');
+
 const db = require('../../models'); // Import the models index
 const User = db.User;
 
@@ -12,7 +13,9 @@ const register = async (req, res) => {
                 errors: [{ msg: "Username sudah digunakan." }]
             });
         }
+
       const errors = registerUserValidation(req);
+
       if (!errors.isEmpty()) {
         console.log(errors.array());
         return res.status(400).render("register", {

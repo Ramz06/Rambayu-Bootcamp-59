@@ -1,0 +1,123 @@
+*, html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #E3E7EB;
+}
+
+.profile {
+  background-color: white;
+  width: 80%;
+  height: 70vh;
+  margin: 30px auto;
+  padding: 19px;
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+p {
+  text-align: justify;
+}
+
+.profile-text {
+  width: 60%;
+}
+
+.profile-icons {
+  width: 100%;
+  display: flex;
+  margin-top: 20px;
+  justify-content: baseline;
+  flex-direction: column;
+}
+
+.profile-icons button {
+  display: block;
+  width: 20%;
+  padding: 5px;
+  background-color: #000;
+  color: white;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+a {
+  font-size: 1.05rem
+}
+
+.profile-icons button:hover {
+  background-color: rgba(0, 0, 0, 0.85);
+}
+
+.profile-icons a {
+  color: #000;
+  text-decoration: none;
+}
+
+.profile-icons a:hover {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+/* Tambahan gaya untuk ikon Font Awesome */
+.social-icons {
+  align-self: center;
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.social-icons a {
+  color: #000;
+  font-size: 2rem;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.social-icons a:hover {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.profile-card {
+  width: 30%;
+  max-height: 100%;
+  border-radius: 10px;
+  margin-right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.44) 0px 3px 8px;
+}
+
+.profile-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+}
+
+/* media queries */
+@media screen and (max-width: 500px) {
+  .profile {
+      height: 100%;
+      width: 100%;
+      margin: 10vh 0 0;
+  }
+
+  .profile-text {
+      width: 85%;
+  }
+
+  .profile-card {
+      width: 70%;
+  }
+}

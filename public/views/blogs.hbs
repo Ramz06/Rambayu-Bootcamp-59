@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blogs</title>
+    <link rel="stylesheet" href="/assets/css/general/navbar.css" />
+    <link rel="stylesheet" href="/assets/css/pages/blog.css" />
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+</head>
+<body>
+    {{> nav }}
+  <div class="container mt-5">
+    <div class="row g-4">
+    {{#if blogs}}  
+      <h1>MY Blogs</h1>
+        {{#each blogs}}
+
+      <div class="col-md-4">
+        <div class="card">
+          <img
+            src="assets/uploads/{{imageurl}}"
+            class="card-img-top"
+            alt="Mobile App"
+          />
+          <div class="card-body">
+            <h5 class="card-title"><a href="/blog-detail/{{id}}">{{title}}</a></h5>
+            <p class="card-text">
+              {{content}}
+            </p>
+            <div class="d-flex justify-content-between">
+              <button class="btn btn-dark"><a href="/blog-edit/{{id}}">Edit</a></button>
+              <button class="btn btn-danger"><a href="/blog-delete/{{id}}"></a>Delete</a></button>
+            </div>
+          </div>
+      </div>
+        </div>
+    {{/each}}
+      {{/if}}
+      <div class="col-md-4">
+        <div class="card d-flex justify-content-center align-items-center border-dashed border-2">
+          <a href="/blog-form"> 
+          <img
+            src="assets/icon/plus-icon.png"
+            class="card-img-top my-4"
+            style="max-width: 100px;"
+            alt="Add New Blog"
+          />
+          <div class="card-body text-center">
+            <h5 class="card-title">Add New Blog</h5>
+          </div>
+          </a>
+      </div>
+        </div>
+    </div>
+  </div>
+      {{!-- <div class="col-md-4">
+        <div class="card">
+          <img
+            src="https://via.placeholder.com/300"
+            class="card-img-top"
+            alt="Web App"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Dumbways Web App - 2021</h5>
+            <p class="card-text">
+              App that used for dumbways student, it was deployed and can be accessed via web. Happy browsing!
+            </p>
+            <div class="d-flex justify-content-between">
+              <button class="btn btn-primary">Edit</button>
+              <button class="btn btn-danger">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div> --}}
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+    <script>
+      const slideMenu = document.querySelector('nav ul')
+      const menuToggle = document.querySelector('input[type="checkbox"]')
+
+      console.log(menuToggle)
+      menuToggle.addEventListener('click', function() {
+          slideMenu.classList.toggle('slide')
+      })
+    </script>
+</body>
+</html>

@@ -4,9 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Blogs</title>
-    <link rel="stylesheet" href="/assets/css/general/navbar.css" />
-    <link rel="stylesheet" href="/assets/css/pages/blog.css" />
-<<<<<<< HEAD
     <link
     href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
     rel="stylesheet"
@@ -28,14 +25,17 @@
             alt="Mobile App"
           />
           <div class="card-body">
-            <h5 class="card-title"><a href="/blog-detail/{{id}}">{{title}}</a></h5>
+            <h5 class="card-title"><a class="text-decoration-none text-dark" href="/blog-detail/{{id}}">{{title}}</a></h5>
             <p class="card-text">
               {{content}}
             </p>
             <div class="d-flex justify-content-between">
-              <button class="btn btn-dark"><a href="/blog-edit/{{id}}">Edit</a></button>
-              <button class="btn btn-danger"><a href="/blog-delete/{{id}}"></a>Delete</a></button>
+              <a href="/blog-edit/{{id}}" class="btn btn-dark text-decoration-none text-light">Edit</a>
+              <a href="/blog-delete/{{id}}" class="btn btn-danger text-decoration-none text-light">
+                <button class="btn btn-danger delete-btn" data-id="{{id}}">Delete</button>
+              </a>
             </div>
+
           </div>
       </div>
         </div>
@@ -60,14 +60,6 @@
   </div>
   <!-- Bootstrap JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script>
-      const slideMenu = document.querySelector('nav ul')
-      const menuToggle = document.querySelector('input[type="checkbox"]')
-
-      console.log(menuToggle)
-      menuToggle.addEventListener('click', function() {
-          slideMenu.classList.toggle('slide')
-      })
-    </script>
+  <script src="/assets/js/blog-delete.js"></script>
 </body>
 </html>

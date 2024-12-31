@@ -35,7 +35,8 @@ app.post("/api/blogs", uploadFile.single('imageurl'), blogService.addBlog);
 // Validasi untuk /users/register
 app.post("/users/register", registerUserValidation , userService.register);
 
-app.put('/blogs/:id', uploadFile.single('imageurl'), blogService.updateBlog);
+app.put('/blog-edit/:id', uploadFile.single('imageurl'), blogService.updateBlog);
+app.delete('/blog-delete/:id', blogService.deleteBlog);
 
 
 // post function

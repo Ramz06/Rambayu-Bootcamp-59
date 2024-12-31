@@ -4,100 +4,106 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blog Page</title>
-    <link rel="stylesheet" href="assets/css/general/navbar.css" />
-    <link rel="stylesheet" href="assets/css/pages/blog.css" />
+
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
       rel="stylesheet"
     />
   </head>
   <body>
     {{> nav }}
-    <main>
-      <h1>Add My Project</h1>
-      <form method="post" action="/api/blogs" enctype="multipart/form-data">
-        <label for="name"
-          >Project Name
+    <main class="container mt-5">
+      <h1 class="mb-4">Add My Project</h1>
+      <form method="post" action="/api/blogs" enctype="multipart/form-data" class="needs-validation" novalidate>
+        <div class="mb-3">
+          <label for="name" class="form-label">Project Name</label>
           <input
             type="text"
             id="name"
             name="title"
+            class="form-control"
             placeholder="Enter project name"
             autocomplete="off"
             required
           />
-        </label>
+          <div class="invalid-feedback">
+            Please enter a project name.
+          </div>
+        </div>
 
-        <label for="content"
-          >Description
+        <div class="mb-3">
+          <label for="content" class="form-label">Description</label>
           <textarea
             id="content"
             rows="8"
+            class="form-control"
             placeholder="Enter project content"
             name="content"
             required
           ></textarea>
-        </label>
+          <div class="invalid-feedback">
+            Please enter a description.
+          </div>
+        </div>
 
-        <label>Technologies</label>
-        <div class="tech-options">
-          <label
-            ><input
+        <div class="mb-3">
+          <label class="form-label">Technologies</label>
+          <div class="form-check">
+            <input
               type="checkbox"
               name="tech"
               value="Node Js"
-              class="checkbox"
+              class="form-check-input"
+              id="nodejs"
             />
-            Node Js</label
-          >
-          <label
-            ><input
+            <label class="form-check-label" for="nodejs">Node Js</label>
+          </div>
+          <div class="form-check">
+            <input
               type="checkbox"
               name="tech"
               value="Next Js"
-              class="checkbox"
+              class="form-check-input"
+              id="nextjs"
             />
-            Next Js</label
-          >
-          <label
-            ><input
+            <label class="form-check-label" for="nextjs">Next Js</label>
+          </div>
+          <div class="form-check">
+            <input
               type="checkbox"
               name="tech"
               value="React Js"
-              class="checkbox"
+              class="form-check-input"
+              id="reactjs"
             />
-            React Js</label
-          >
-          <label
-            ><input
+            <label class="form-check-label" for="reactjs">React Js</label>
+          </div>
+          <div class="form-check">
+            <input
               type="checkbox"
               name="tech"
               value="TypeScript"
-              class="checkbox"
+              class="form-check-input"
+              id="typescript"
             />
-            TypeScript</label
-          >
+            <label class="form-check-label" for="typescript">TypeScript</label>
+          </div>
         </div>
 
-        <label for="image"
-          >Upload Image
-          <input type="file" id="image" name="imageurl" required/>
-          <i class="fas fa-paperclip"></i>
-        </label>
+        <div class="mb-3">
+          <label for="image" class="form-label">Upload Image</label>
+          <input type="file" id="image" name="imageurl" class="form-control" required/>
+          <div class="invalid-feedback">
+            Please upload an image.
+          </div>
+        </div>
 
-        <button type="submit" class="submit-btn" name="submit">Submit</button>
+        <button type="submit" class="btn btn-dark" name="submit">Submit</button>
       </form>
-
-      <!-- blog section -->
-    <script src="assets/js/blog-edit.js"></script>
-    <script>
-      const slideMenu = document.querySelector('nav ul')
-      const menuToggle = document.querySelector('input[type="checkbox"]')
-
-      console.log(menuToggle)
-      menuToggle.addEventListener('click', function() {
-          slideMenu.classList.toggle('slide')
-      })
-    </script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

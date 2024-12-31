@@ -1,27 +1,21 @@
 const form = document.getElementById('blog-form');
 form.addEventListener('submit', async (e) => {
-    e.preventDefault(); // Mencegah reload halaman
+    e.preventDefault(); // Prevent page reload
 
-    const id = 1; // ID blog yang ingin diupdate (sesuaikan dengan data Anda)
-    const title = form.title.value;
-    const content = form.content.value;
-    const imageUrl = form.imageUrl.value;
+    console.log("connected");
+    const id = document.getElementById('blog-id').value;
 
     try {
-        const response = await fetch(`http://localhost:3000/blogs/${id}`, {
+        const response = await fetch(`http://localhost:3000/blog-edit/${id}`, {
             method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ title, content, imageUrl }),
+            body: new FormData(form)
         });
 
-        const result = await response.json();
         if (response.ok) {
-            alert('Blog updated successfully!');
-            console.log(result);
+            // Redirect to /blogs after successful update
+            window.location.href = '/blogs';
         } else {
-            alert(`Error: ${result.error}`);
+            const result = await response.json();
         }
     } catch (err) {
         console.error('Error updating blog:', err);

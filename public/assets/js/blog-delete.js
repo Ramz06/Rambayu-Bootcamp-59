@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (response.ok) {
               alert('Blog deleted successfully!');
-              location.reload(); // Refresh halaman untuk memperbarui daftar
+              window.location.href = '/blogs'; // Refresh halaman untuk memperbarui daftar
             } else {
               const error = await response.json();
               alert(`Error: ${error.message}`);

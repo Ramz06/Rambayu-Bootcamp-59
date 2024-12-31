@@ -1,4 +1,7 @@
 const { convertTime } = require("../application/days-count");
+const path = require("path");
+const fs = require("fs");
+
 const db = require("../../models");
 const Blog = db.Blog;
 
@@ -36,8 +39,6 @@ const updateBlog = async (req, res) => {
     const { title, content } = req.body;
 
 
-
-
     try {
         // Query UPDATE ke tabel
         const blog = await db.Blog.findByPk(id);
@@ -46,16 +47,29 @@ const updateBlog = async (req, res) => {
         }
         if (req.file) {
             const imageurl = req.file.filename;
-            let result = await Blog.update({
+            const oldImagePath = path.join(__dirname, '..', '..', 'public', 'assets', 'uploads', blog.imageurl);
+            console.log(`Attempting to delete file at: ${oldImagePath}`);
+            try {
+                fs.unlink(oldImagePath, (err) => {
+                    if (err) {
+                        console.error('Gagal menghapus file:', err);
+                    } else {
+                        console.log('File berhasil dihapus!');
+                    }
+                });
+            } catch (error) {
+                console.error(`Error deleting old image: ${error.message}`);
+            }
+            const imageResult = await Blog.update({
                 imageurl: imageurl
             }, {
                 where: {
                     id: id
                 }
             })
-            console.log("image updated");
         }
-        result = await Blog.update({
+        
+        const result = await Blog.update({
             title: title,
             content: content,
         }, {
@@ -63,8 +77,9 @@ const updateBlog = async (req, res) => {
                 id: id
             }
         })
-        res.redirect("/blogs");
         console.log("data updated");
+        res.redirect("/blogs");
+
     }
     catch (err) {
         console.log(err.message);
@@ -75,6 +90,23 @@ const deleteBlog = async (req, res) => {
     const { id } = req.params;
 
     try {
+        const blog = await db.Blog.findByPk(id);
+        if (!blog) {
+            return res.status(404).json({ error: 'Blog not found' });
+        }
+        const oldImagePath = path.join(__dirname, '..', '..', 'public', 'assets', 'uploads', blog.imageurl);
+            console.log(`Attempting to delete file at: ${oldImagePath}`);
+            try {
+                fs.unlink(oldImagePath, (err) => {
+                    if (err) {
+                        console.error('Gagal menghapus file:', err);
+                    } else {
+                        console.log('File berhasil dihapus!');
+                    }
+                });
+            } catch (error) {
+                console.error(`Error deleting old image: ${error.message}`);
+            }
         const result = await Blog.destroy({
             where: { id }, // Hapus berdasarkan ID
         });
@@ -82,8 +114,8 @@ const deleteBlog = async (req, res) => {
         if (result === 0) {
             throw new Error('Blog not found or already deleted');
         }
-        console.log("data deleted");
         res.redirect("/blogs");
+        console.log("data deleted");
     } catch (error) {
         console.log(error.message);
     }

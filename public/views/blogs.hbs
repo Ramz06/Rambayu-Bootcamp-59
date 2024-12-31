@@ -8,6 +8,19 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
     rel="stylesheet"
   />
+  <style>
+    .card {
+      width: 18rem; /* Atur ukuran card lebih kecil */
+      border-radius: 15px; /* Ujung tumpul */
+    }
+    .truncate {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3; /* Batasi hingga 3 baris */
+      -webkit-box-orient: vertical;
+    }
+  </style>
 </head>
 <body>
     {{> nav }}
@@ -16,8 +29,7 @@
     {{#if blogs}}  
       <h1>MY Blogs</h1>
         {{#each blogs}}
-
-      <div class="col-md-4">
+      <div class="col-md-4 d-flex justify-content-center">
         <div class="card">
           <img
             src="assets/uploads/{{imageurl}}"
@@ -25,25 +37,24 @@
             alt="Mobile App"
           />
           <div class="card-body">
-            <h5 class="card-title"><a class="text-decoration-none text-dark" href="/blog-detail/{{id}}">{{title}}</a></h5>
-            <p class="card-text">
+            <h5 class="card-title">
+              <a class="text-decoration-none text-dark" href="/blog-detail/{{id}}">{{title}}</a>
+            </h5>
+            <p class="card-text truncate">
               {{content}}
             </p>
             <div class="d-flex justify-content-between">
               <a href="/blog-edit/{{id}}" class="btn btn-dark text-decoration-none text-light">Edit</a>
-              <a href="/blog-delete/{{id}}" class="btn btn-danger text-decoration-none text-light">
-                <button class="btn btn-danger delete-btn" data-id="{{id}}">Delete</button>
-              </a>
+              <button class="btn btn-danger delete-btn" data-id="{{id}}">Delete</button>
             </div>
-
           </div>
-      </div>
         </div>
-    {{/each}}
+      </div>
+        {{/each}}
       {{/if}}
-      <div class="col-md-4">
+      <div class="col-md-4 d-flex justify-content-center">
         <div class="card d-flex justify-content-center align-items-center border-dashed border-2">
-          <a href="/blog-form"> 
+          <a href="/blog-form" class="text-decoration-none text-dark"> 
           <img
             src="assets/icon/plus-icon.png"
             class="card-img-top my-4"
@@ -54,8 +65,8 @@
             <h5 class="card-title">Add New Blog</h5>
           </div>
           </a>
-      </div>
         </div>
+      </div>
     </div>
   </div>
   <!-- Bootstrap JS -->

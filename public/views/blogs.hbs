@@ -5,72 +5,80 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Blogs</title>
     <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
-    rel="stylesheet"
-  />
-  <style>
-    .card {
-      width: 18rem; /* Atur ukuran card lebih kecil */
-      border-radius: 15px; /* Ujung tumpul */
-    }
-    .truncate {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-line-clamp: 3; /* Batasi hingga 3 baris */
-      -webkit-box-orient: vertical;
-    }
-  </style>
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+        rel="stylesheet"
+    />
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .card {
+            width: 18rem;
+            border-radius: 15px;
+        }
+        .truncate {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3; /* Batasi hingga 3 baris */
+            -webkit-box-orient: vertical;
+        }
+        .centered-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%; /* Agar konten ditengah */
+        }
+        .centered-card img {
+            max-width: 100px;
+            margin: 0 auto;
+        }
+        .card-body .card-text {
+            margin-bottom: 5px; /* Mengurangi jarak antar elemen card-text */
+            font-size: 0.9rem; /* Menyesuaikan ukuran teks jika diinginkan */
+        }
+    </style>
 </head>
 <body>
     {{> nav }}
-  <div class="container mt-5">
-    <div class="row g-4">
-    {{#if blogs}}  
-      <h1>MY Blogs</h1>
-        {{#each blogs}}
-      <div class="col-md-4 d-flex justify-content-center">
-        <div class="card">
-          <img
-            src="assets/uploads/{{imageurl}}"
-            class="card-img-top"
-            alt="Mobile App"
-          />
-          <div class="card-body">
-            <h5 class="card-title">
-              <a class="text-decoration-none text-dark" href="/blog-detail/{{id}}">{{title}}</a>
-            </h5>
-            <p class="card-text truncate">
-              {{content}}
-            </p>
-            <div class="d-flex justify-content-between">
-              <a href="/blog-edit/{{id}}" class="btn btn-dark text-decoration-none text-light">Edit</a>
-              <button class="btn btn-danger delete-btn" data-id="{{id}}">Delete</button>
+    <div class="container mt-5">
+        <div class="row g-4">
+            {{#if blogs}}
+            <h1 class="text-center">MY Blogs</h1>
+            <!-- Blog Card -->
+            {{#each blogs}}
+            <div class="col-md-4 d-flex justify-content-center">
+                <div class="card border-dashed border-2" style="width: 18rem; height: 70vh;">
+                    <img src="assets/uploads/{{imageurl}}" class="card-img-top" height="40%" style="object-fit: cover;">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="/blog-detail/{{id}}" class="text-decoration-none text-dark">{{title}}</a></h5>
+                        <p class="card-text truncate">{{content}}</p>
+                        <p class="card-text truncate">Author: {{author}}</p>
+                        <p class="card-text truncate">Duration: {{blogDuration}}</p>
+                        <p class="card-text truncate">Post: {{postedTime}}</p>
+                        <a href="/blog-edit/{{id}}" class="btn btn-dark">Edit</a>
+                        <a href="/blog-delete/{{id}}" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
             </div>
-          </div>
+            {{/each}}
+            {{/if}}
+            <!-- Add New Blog Card -->
+            <div class="col-md-4 d-flex justify-content-center">
+                <div class="card centered-card border-dashed border-2" style="width: 18rem; height: 70vh;">
+                    <a href="/blog-form" class="text-decoration-none text-dark text-center">
+                        <img src="assets/icon/plus-icon.png" alt="Add New Blog">
+                        <div class="card-body">
+                            <h5 class="card-title">Add New Blog</h5>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
-      </div>
-        {{/each}}
-      {{/if}}
-      <div class="col-md-4 d-flex justify-content-center">
-        <div class="card d-flex justify-content-center align-items-center border-dashed border-2">
-          <a href="/blog-form" class="text-decoration-none text-dark"> 
-          <img
-            src="assets/icon/plus-icon.png"
-            class="card-img-top my-4"
-            style="max-width: 100px;"
-            alt="Add New Blog"
-          />
-          <div class="card-body text-center">
-            <h5 class="card-title">Add New Blog</h5>
-          </div>
-          </a>
-        </div>
-      </div>
     </div>
-  </div>
-  <!-- Bootstrap JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-  <script src="/assets/js/blog-delete.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/blog-delete.js"></script>
 </body>
 </html>

@@ -1,49 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My web</title>
-    <link rel="stylesheet" href="assets/css/general/navbar.css">
-    <link rel="stylesheet" href="assets/css/pages/index.css">
-    <!-- Link CDN Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  </head>
-  <body>
-    {{> nav }}
-    <div class="profile">
-        <section class="profile-text">
-            <h1 style="text-align: center; margin-bottom: 10px;">Welcome to My Hut</h1>
-            <p>
-                <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo nulla consectetur mollitia atque cumque laboriosam debitis nisi at eius quae! Id sunt sequi ipsum maiores qui tempora necessitatibus! Suscipit, doloremque.</span>
-                <span>Adipisci veniam, amet iusto ut, repellat quae, illo blanditiis eum id ducimus cupiditate. Eaque, quaerat? Optio et illo eum cum. Facere neque velit porro, quibusdam exercitationem nemo dolorum quod odio.</span>
-            </p>
-            <div class="profile-icons">
-                <button><a href="" style="color: white;">Contact</a></button>
-                <a href="">Download CV <i class="fas fa-download"></i></a>
-                <!-- Tambahkan ikon media sosial di bawah konten yang ada -->
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                </div>
-            </div>
-        </section>
-        <section class="profile-card">
-            <img src="assets/images/photo.jpeg" alt="">
-            <h3>Rambayu Rimbajati</h3>
-            <p>Fullstack Developer</p>
-        </section>
-
-    <script>
-        const slideMenu = document.querySelector('nav ul')
-        const menuToggle = document.querySelector('input[type="checkbox"]')
-
-        console.log(menuToggle)
-        menuToggle.addEventListener('click', function() {
-            console.log(slideMenu)
-            slideMenu.classList.toggle('slide')
-        })
-    </script>
-    </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Web</title>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+  <link rel="stylesheet" href="./assets/css/general/navbar.css" />
+  <link rel="stylesheet" href="./assets/css/pages/index.css" />
+</head>
+<body>
+  {{> nav}}
+  <div class="profile">
+    <section class="profile-text">
+      <h1 class="text-center mb-3">Welcome to My Hut</h1>
+      <p>
+        <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo nulla consectetur mollitia atque cumque laboriosam debitis nisi at eius quae! Id sunt sequi ipsum maiores qui tempora necessitatibus! Suscipit, doloremque.</span>
+        <span>Adipisci veniam, amet iusto ut, repellat quae, illo blanditiis eum id ducimus cupiditate. Eaque, quaerat? Optio et illo eum cum. Facere neque velit porro, quibusdam exercitationem nemo dolorum quod odio.</span>
+      </p>
+      <div class="profile-icons d-flex align-items-center">
+        <button class="btn btn-dark">
+          <a href="/contact" style="color: white;">Contact Me</a>
+        </button>
+        <a href="#" class="ms-3">Download CV <i class="fas fa-download"></i></a>
+      </div>
+      <div class="social-icons mt-3">
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+      </div>
+    </section>
+    <section class="profile-card">
+      <img src="./assets/images/photo.jpeg" alt="Profile Picture">
+      <h3>Rambayu Rimbajati</h3>
+      <p>Fullstack Developer</p>
+    </section>
+  </div>
+  {{> notloginModal}}
+  {{> successLogoutModal}}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script src="./assets/js/user.js" type="module"></script>
+</body>
+</html>

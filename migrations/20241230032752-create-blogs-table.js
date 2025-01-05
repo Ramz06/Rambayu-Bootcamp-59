@@ -1,14 +1,13 @@
 'use strict';
 
-/** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up(queryInterface, Sequelize) {
+  up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('blogs', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
       },
       title: {
         type: Sequelize.STRING,
@@ -16,23 +15,43 @@ module.exports = {
       },
       content: {
         type: Sequelize.TEXT,
-        allowNull: false
+        allowNull: false,
       },
       imageurl: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+      },
+      blogDuration: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      postedTime: {
+        type: Sequelize.DATE,
+        allowNull: false,
+        defaultValue: Sequelize.NOW,
+      },
+      username: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        references: {
+          model: 'users', // Nama tabel User
+          key: 'username',
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
-  async down(queryInterface, Sequelize) {
+
+  down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('blogs');
-  }
+  },
 };

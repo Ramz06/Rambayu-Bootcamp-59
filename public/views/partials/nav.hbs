@@ -1,20 +1,62 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg bg-dark">
   <div class="container-fluid">
-    <img src="/assets/images/logo.png" alt="Logo" width="55" height="30" class="d-inline-block align-text-top">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="#">
+      <img
+        src="./assets/images/logo.png"
+        alt=""
+        style="width: 55px; height: 30px;"
+      />
+    </a>
+    <button
+      class="navbar-toggler bg-light"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarText"
+      aria-controls="navbarText"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ">
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Home</a>
+          <a
+            class="nav-link active text-light"
+            aria-current="page"
+            href="/"
+          >Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/blogs">Blogs</a>
+          <a class="nav-link text-light" href="/blogs">Blogs</a>
         </li>
-        <li class="nav-item ms-auto">
-          <button class="btn btn-dark">Contact Me</button>
-        </li>
+      </ul>
+      <span class="navbar-text">
+        <a href="/contact">
+          <button
+            class="btn text-light"
+            style="background-color: #696767;"
+          >Contact Me</button>
+        </a>
+      </span>
+    </div>
+    <div class="dropdown mx-2">
+      <div
+        class="account-circle"
+        id="accountDropdown"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >
+        <img src="./assets/images/cat-avatar.png" alt="" style="width: 55px; height: 50px;">
+        <!-- Optional Bootstrap icon -->
+      </div>
+      <ul
+        class="dropdown-menu dropdown-menu-end"
+        aria-labelledby="accountDropdown"
+      >
+        <li><a class="dropdown-item" href="#" id="changePassword">Change Password</a></li>
+        <li><a class="dropdown-item" href="#" id="changeEmail">Change Email</a></li>
+        <li><a class="dropdown-item" href="#" id="logout">Logout</a></li>
       </ul>
     </div>
   </div>

@@ -26,9 +26,9 @@ module.exports = {
         allowNull: false,
       },
       postedTime: {
-        type: Sequelize.DATE,
+        type: Sequelize.INTEGER,
         allowNull: false,
-        defaultValue: Sequelize.NOW,
+        defaultValue: 0,
       },
       username: {
         type: Sequelize.STRING,

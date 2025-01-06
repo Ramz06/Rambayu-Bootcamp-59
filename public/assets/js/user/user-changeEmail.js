@@ -7,8 +7,8 @@ async function changeEmail() {
       window.location.href = '/users/login';
     } else if (response.status === 401) {
       // Jika server mengembalikan status 401, tampilkan modal box
-      const notLoggedInModal = new bootstrap.Modal(document.getElementById('notLoggedInModal'));
-      notLoggedInModal.show();
+      const unauthorizedModal = new bootstrap.Modal(document.getElementById('unauthorizedModal'));
+            unauthorizedModal.show();
     } else {
       // Tangani error lainnya
       alert('Terjadi kesalahan. Silakan coba lagi.');

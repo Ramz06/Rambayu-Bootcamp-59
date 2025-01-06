@@ -2,15 +2,14 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const hbs = require("hbs");
-const session = require("express-session")
+const cron = require("node-cron");
 const userController = require("./controllers/user-controller")
 const blogController = require("./controllers/blog-controller")
 const viewController = require("./controllers/views-controller")
-const authMiddleware = require("./middlewares/auth-middleware")
 const uploadFile = require("./middlewares/upload-middleware")
+const sessionMiddleware = require("./middlewares/session-middleware")
 const {registerUserValidation, loginUserValidation} = require("./validation/user-validation")
-const dotenv = require("dotenv");
-dotenv.config();
+const blogService = require("./service/blog-service")
 const port = 3000;
 
 app.set("views", path.join(__dirname, '..', 'public', 'views'));
@@ -21,23 +20,17 @@ hbs.registerPartials(path.join(__dirname, '..', 'public', 'views', 'partials'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '..', 'public')));
 app.use(express.json()); 
-app.use(session({
-  name: "my-session",
-  secret: process.env.SESSION_KEY,
-  resave: false,
-  saveUninitialized: true,
-  cookie: {
-    httpOnly: true, // Melindungi cookie dari akses JavaScript
-    secure: process.env.NODE_ENV === "production", // Gunakan secure=true hanya untuk HTTPS
-    sameSite: "strict" // Membatasi pengiriman cookie ke domain yang sama
-  }
-}));
+app.use(sessionMiddleware);
 
 
 //route
 app.get("/", viewController.index)
 app.get("/contact", viewController.contact)
 app.get("/testimonial", viewController.testimonial)
+
+cron.schedule("*/60 * * * * *", () => {
+    blogService.updateBlogTimers();
+});
 
 app.get("/blog-detail/:id", blogController.blogDetail)
 app.get("/blog-form", blogController.blogForm)

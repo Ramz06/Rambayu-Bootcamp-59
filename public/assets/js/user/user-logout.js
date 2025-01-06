@@ -8,10 +8,10 @@ async function logout() {
       );
       successModal.show();
     } else if (response.status === 401) {
-      const notLoggedInModal = new bootstrap.Modal(
-        document.getElementById("notLoggedInModal")
+      const unauthorizedModal = new bootstrap.Modal(
+        document.getElementById("unauthorizedModal")
       );
-      notLoggedInModal.show();
+      unauthorizedModal.show();
     } else {
       alert("Terjadi kesalahan. Silakan coba lagi.");
     }

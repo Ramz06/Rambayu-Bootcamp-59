@@ -57,8 +57,8 @@
                         <p class="card-text truncate">Author: {{author}}</p>
                         <p class="card-text truncate">Duration: {{blogDuration}}</p>
                         <p class="card-text truncate">Post: {{postedTime}}</p>
-                        <a href="/blog-edit/{{id}}" class="btn btn-dark">Edit</a>
-                        <a href="/blog-delete/{{id}}" class="btn btn-danger">Delete</a>
+                        <button class="btn btn-dark edit-btn" data-id="{{id}}">Edit</button>
+                        <button class="btn btn-danger delete-btn" data-id="{{id}}">Delete</button>
                     </div>
                 </div>
             </div>
@@ -67,7 +67,7 @@
             <!-- Add New Blog Card -->
             <div class="col-md-4 d-flex justify-content-center">
                 <div class="card centered-card border-dashed border-2" style="width: 18rem; height: 70vh;">
-                    <a href="/blog-form" class="text-decoration-none text-dark text-center">
+                    <a href="#" class="text-decoration-none text-dark text-center" id="blog-form">
                         <img src="assets/icon/plus-icon.png" alt="Add New Blog">
                         <div class="card-body">
                             <h5 class="card-title">Add New Blog</h5>
@@ -77,8 +77,12 @@
             </div>
         </div>
     </div>
+    {{> userActionModal}}
     <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="/assets/js/blog-delete.js"></script>
+    <script src="/assets/js/blog-form.js"></script>
+    <script src="/assets/js/blog-edit.js"></script>
+    <script type="module" src="/assets/js/user.js"></script>
 </body>
 </html>

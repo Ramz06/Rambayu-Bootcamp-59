@@ -1,32 +1,55 @@
-const db = require("../../models")
-const Blog = db.Blog
+const db = require("../../models");
+const Blog = db.Blog;
+const { displayTime } = require("../utils/display-time");
+
+function getBlogs(result) {
+  const blogs = result.map((blog) => ({
+    blogDuration: displayTime(blog.blogDuration),
+    postedTime: displayTime(blog.postedTime),
+    id: blog.id,
+    author: blog.username,
+    title: blog.title,
+    content: blog.content,
+    imageurl: blog.imageurl,
+  }));
+  return blogs;
+}
 
 const updateBlogTimers = async () => {
-    try {
-      // Ambil semua blog dari database
-      const blogs = await Blog.findAll();
-  
-      // Perbarui blogDuration dan postedTime
-      for (const blog of blogs) {
-        const newDuration = blog.blogDuration - 1; // Kurangi durasi
-        const newPostedTime = new Date(blog.postedTime.getTime() + 60000); // Tambahkan 1 menit ke postedTime
-  
-        // Update ke database
-        await Blog.update({
-          blogDuration: newDuration > 0 ? newDuration : 0, // Jika blogDuration < 0, tetap 0
-          postedTime: newPostedTime
-        }, {
-          where: { id: blog.id }
-        });
-      }
-  
-      console.log('Blog timers updated');
-    } catch (err) {
-      console.error('Error updating blog timers:', err);
-    }
-  };
-  
+  try {
+    // Ambil semua blog dari database
+    const blogs = await Blog.findAll();
 
-module.exports = {
-    updateBlogTimers
-}
+    // Perbarui blogDuration dan postedTime
+    for (const blog of blogs) {
+      const newDuration = blog.blogDuration - 60; // Kurangi durasi
+      const newPostedTime = blog.postedTime + 60;
+
+      // Update ke database
+      if (newDuration < 1) {
+        await Blog.destroy({ where: { id: blog.id } });
+      } else {
+        await Blog.update(
+          {
+            blogDuration: newDuration,
+            postedTime: newPostedTime,
+          },
+          {
+            where: { id: blog.id },
+          }
+        );
+      }
+    }
+
+    console.log("Blog timers updated");
+  } catch (err) {
+    console.error("Error updating blog timers:", err);
+  }
+};
+
+const blogService = {
+  getBlogs,
+  updateBlogTimers,
+};
+
+module.exports = blogService;

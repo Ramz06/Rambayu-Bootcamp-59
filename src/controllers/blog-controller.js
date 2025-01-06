@@ -1,6 +1,7 @@
-const { convertTime } = require("../application/days-count");
 const path = require("path");
 const fs = require("fs");
+const blogService = require("../service/blog-service");
+const authValidation = require("../validation/auth-validation")
 
 const db = require("../../models");
 const Blog = db.Blog;
@@ -8,8 +9,7 @@ const Blog = db.Blog;
 const blogs = async (req, res) => {   
     try {
         const result = await Blog.findAll();
-        const blogs = result;
-
+        const blogs = blogService.getBlogs(result);
         res.render("blogs", { blogs })
       } catch (err) {
         console.error(err.message);
@@ -30,21 +30,39 @@ const blogDetail = async (req, res) => {
   }
 }
 
-const blogForm = (req, res) => {
+const blogForm = async (req, res) => {
+    const user = await authValidation(req.session.user)
+    if (!user) {
+        return res.status(401).json({ message: "Unauthorized" });
+    }
     res.render("blog-form")
 }
 
 const blogEdit = async (req, res) => {
+    const user = await authValidation(req.session.user)
+    if (!user) {
+        return res.status(401).json({ message: "Unauthorized" });
+    }
     const id = req.params.id;
     const blog = await Blog.findByPk(id);
-    res.render("blog-edit", {blog})
+    if (blog.username !== user.username) {
+        return res.status(403).json({ message: "Not Allowed" });
+    }
+    res.status(200).render("blog-edit", {blog})
 }
 
 const addBlog = async (req, res) => {
-    const { title, content } = req.body;
-    const file = req.file;
-    const imageurl = file.filename;
+    const user = await authValidation(req.session.user)
+    if (!user) {
+        return res.status(401).json({ message: "Unauthorized" });
+    }
 
+    const { title, content, startdate, enddate } = req.body;
+    const file = req.file;
+    const imageurl = file.filename; 
+    const startDate = new Date(startdate);
+    const endDate = new Date(enddate);
+    const blogDuration = Math.ceil((endDate - startDate) / 1000);
 
     if (!file) {
         return res.status(400).send('No file uploaded.');
@@ -56,7 +74,8 @@ const addBlog = async (req, res) => {
             title: title,
             content: content,
             imageurl: imageurl,
-            createdAt: convertTime(new Date(), "days")
+            blogDuration: blogDuration,
+            username: user.username
         })
         res.redirect("/blogs");
     }
@@ -119,10 +138,17 @@ const updateBlog = async (req, res) => {
 }
 
 const deleteBlog = async (req, res) => {
+    const user = await authValidation(req.session.user)
+    if (!user) {
+        return res.status(401).json({ message: "Unauthorized" });
+    }
     const { id } = req.params;
+    const blog = await db.Blog.findByPk(id);
+    if (blog.username !== user.username) {
+        return res.status(403).json({ message: "Not Allowed" });
+    }
 
     try {
-        const blog = await db.Blog.findByPk(id);
         if (!blog) {
             return res.status(404).json({ error: 'Blog not found' });
         }

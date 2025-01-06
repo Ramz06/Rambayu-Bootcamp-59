@@ -30,9 +30,9 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     postedTime: {
-      type: DataTypes.DATE,
+      type: DataTypes.INTEGER,
       allowNull: false,
-      defaultValue: DataTypes.NOW
+      defaultValue: 0
     },
     username: {
       type: DataTypes.STRING,

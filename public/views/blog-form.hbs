@@ -13,9 +13,27 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
       rel="stylesheet"
     />
+    <style>
+      /* Custom form styling */
+      form {
+        max-width: 600px;
+        width: 100%;
+        border: 2px solid black; /* Border hitam */
+        border-radius: 8px; /* Tumpul */
+        padding: 20px;
+        background-color: #f8f9fa; /* Warna latar belakang form */
+      }
+
+      input[type="date"] {
+        border: 1px solid #000; /* Border hitam untuk input date */
+        border-radius: 4px; /* Tumpul */
+        padding: 5px 10px;
+        width: 100%;
+      }
+    </style>
   </head>
   <body>
-    {{> nav }}
+    {{> nav}}
     <main class="container mt-5">
       <h1 class="mb-4">Add My Project</h1>
       <form method="post" action="/api/blogs" enctype="multipart/form-data" class="needs-validation" novalidate>
@@ -30,9 +48,17 @@
             autocomplete="off"
             required
           />
-          <div class="invalid-feedback">
-            Please enter a project name.
-          </div>
+          <div class="invalid-feedback">Please enter a project name.</div>
+        </div>
+
+        <div class="mb-3">
+          <label for="startdate" class="form-label">Start Date</label>
+          <input type="date" id="startdate" name="startdate" class="form-control" required />
+        </div>
+
+        <div class="mb-3">
+          <label for="enddate" class="form-label">End Date</label>
+          <input type="date" id="enddate" name="enddate" class="form-control" required />
         </div>
 
         <div class="mb-3">
@@ -45,65 +71,38 @@
             name="content"
             required
           ></textarea>
-          <div class="invalid-feedback">
-            Please enter a description.
-          </div>
+          <div class="invalid-feedback">Please enter a description.</div>
         </div>
 
         <div class="mb-3">
           <label class="form-label">Technologies</label>
           <div class="form-check">
-            <input
-              type="checkbox"
-              name="tech"
-              value="Node Js"
-              class="form-check-input"
-              id="nodejs"
-            />
+            <input type="checkbox" name="tech" value="Node Js" class="form-check-input" id="nodejs" />
             <label class="form-check-label" for="nodejs">Node Js</label>
           </div>
           <div class="form-check">
-            <input
-              type="checkbox"
-              name="tech"
-              value="Next Js"
-              class="form-check-input"
-              id="nextjs"
-            />
+            <input type="checkbox" name="tech" value="Next Js" class="form-check-input" id="nextjs" />
             <label class="form-check-label" for="nextjs">Next Js</label>
           </div>
           <div class="form-check">
-            <input
-              type="checkbox"
-              name="tech"
-              value="React Js"
-              class="form-check-input"
-              id="reactjs"
-            />
+            <input type="checkbox" name="tech" value="React Js" class="form-check-input" id="reactjs" />
             <label class="form-check-label" for="reactjs">React Js</label>
           </div>
           <div class="form-check">
-            <input
-              type="checkbox"
-              name="tech"
-              value="TypeScript"
-              class="form-check-input"
-              id="typescript"
-            />
+            <input type="checkbox" name="tech" value="TypeScript" class="form-check-input" id="typescript" />
             <label class="form-check-label" for="typescript">TypeScript</label>
           </div>
         </div>
 
         <div class="mb-3">
           <label for="image" class="form-label">Upload Image</label>
-          <input type="file" id="image" name="imageurl" class="form-control" required/>
-          <div class="invalid-feedback">
-            Please upload an image.
-          </div>
+          <input type="file" id="image" name="imageurl" class="form-control" required />
+          <div class="invalid-feedback">Please upload an image.</div>
         </div>
 
         <button type="submit" class="btn btn-dark" name="submit">Submit</button>
       </form>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>

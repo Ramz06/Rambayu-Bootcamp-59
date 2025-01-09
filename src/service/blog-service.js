@@ -15,6 +15,19 @@ function getBlogs(result) {
   return blogs;
 }
 
+function getBlog(result) {
+  const blog = {
+    blogDuration: displayTime(result.blogDuration),
+    postedTime: displayTime(result.postedTime),
+    id: result.id,
+    author: result.username,
+    title: result.title,
+    content: result.content,
+    imageurl: result.imageurl,
+  };
+  return blog;
+}
+
 const updateBlogTimers = async () => {
   try {
     // Ambil semua blog dari database
@@ -49,6 +62,7 @@ const updateBlogTimers = async () => {
 
 const blogService = {
   getBlogs,
+  getBlog,
   updateBlogTimers,
 };
 

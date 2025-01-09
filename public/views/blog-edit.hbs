@@ -13,38 +13,22 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <style>
-      /* Custom form styling */
-      form {
-        max-width: 600px;
-        width: 100%;
-        border: 2px solid black; /* Border hitam */
-        border-radius: 8px; /* Tumpul */
-        padding: 20px;
-        background-color: #f8f9fa; /* Warna latar belakang form */
-      }
-
-      input[type="date"] {
-        border: 1px solid #000; /* Border hitam untuk input date */
-        border-radius: 4px; /* Tumpul */
-        padding: 5px 10px;
-        width: 100%;
-      }
-    </style>
+    <link rel="stylesheet" href="/assets/css/general/navbar.css">
+    <link rel="stylesheet" href="/assets/css/pages/blog-form.css">
   </head>
   <body>
     {{> nav}}
-    <main class="container mt-5">
-      <h1 class="mb-4">Add My Project</h1>
-      <form method="post" action="/api/blogs" enctype="multipart/form-data" class="needs-validation" id="blog-form" novalidate>
-        <input type="hidden" id="blog-id" name="id" value="{{blog.id}}">
+    <main class="container mt-5 d-flex justify-content-center flex-wrap">
+      <h1 class="mb-4 w-100 text-center fs-1">Add My <span class="text-primary">Project</span></h1>
+      <form method="post" action="/api/blogs" enctype="multipart/form-data" class="needs-validation" id="blog-edit" novalidate>
+      <input type="hidden" name="id" value="{{blog.id}}" id="blog-id">
         <div class="mb-3">
           <label for="name" class="form-label">Project Name</label>
           <input
             type="text"
             id="name"
             name="title"
-            class="form-control"
+            class="form-control border-primary"
             placeholder="Enter project name"
             autocomplete="off"
             value="{{blog.title}}"
@@ -54,11 +38,11 @@
         </div>
 
         <div class="mb-3">
-          <label for="content" class="form-label">Content</label>
+          <label for="content" class="form-label">Description</label>
           <textarea
             id="content"
             rows="8"
-            class="form-control"
+            class="form-control border-primary"
             placeholder="Enter project content"
             name="content"
             required
@@ -67,38 +51,25 @@
         </div>
 
         <div class="mb-3">
-          <label class="form-label">Technologies</label>
-          <div class="form-check">
-            <input type="checkbox" name="tech" value="Node Js" class="form-check-input" id="nodejs" />
-            <label class="form-check-label" for="nodejs">Node Js</label>
-          </div>
-          <div class="form-check">
-            <input type="checkbox" name="tech" value="Next Js" class="form-check-input" id="nextjs" />
-            <label class="form-check-label" for="nextjs">Next Js</label>
-          </div>
-          <div class="form-check">
-            <input type="checkbox" name="tech" value="React Js" class="form-check-input" id="reactjs" />
-            <label class="form-check-label" for="reactjs">React Js</label>
-          </div>
-          <div class="form-check">
-            <input type="checkbox" name="tech" value="TypeScript" class="form-check-input" id="typescript" />
-            <label class="form-check-label" for="typescript">TypeScript</label>
-          </div>
-        </div>
-
-        <div class="mb-3">
           <label for="image" class="form-label">Upload Image</label>
-          <input type="file" id="image" name="imageurl" class="form-control" required />
-          <div id="imagePreview">
-            <img src="/assets/uploads/{{blog.imageurl}}" alt="Blog Image" class="img-fluid">
-          </div>
+          <input type="file" id="image" name="imageurl" class="form-control border-primary" required />
           <div class="invalid-feedback">Please upload an image.</div>
+          <div id="imagePreview">
+            <img src="/assets/uploads/{{blog.imageurl}}" alt="" srcset="">
+          </div>
         </div>
 
-        <button type="submit" class="btn btn-dark" name="submit">Submit</button>
+        <button type="submit" class="btn text-light" name="submit" style="background-color: #1e40af;">Submit</button>
       </form>
     </main>
-    <script src="/assets/js/blog-edit.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/assets/js/alert-modal.js" type="module"></script>
+    <script src="/assets/js/blog-edit.js" type="module"></script>
+    <script src="/assets/js/user.js" type="module"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"
+    ></script>
   </body>
 </html>

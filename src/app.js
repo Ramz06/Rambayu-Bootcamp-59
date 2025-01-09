@@ -15,6 +15,7 @@ const port = 3000;
 app.set("views", path.join(__dirname, '..', 'public', 'views'));
 app.set("view engine", "hbs");
 hbs.registerPartials(path.join(__dirname, '..', 'public', 'views', 'partials'));
+hbs.registerHelper('eq', (a, b) => a === b);
 
 // middleware
 app.use(express.urlencoded({ extended: true }));
@@ -27,15 +28,16 @@ app.use(sessionMiddleware);
 app.get("/", viewController.index)
 app.get("/contact", viewController.contact)
 app.get("/testimonial", viewController.testimonial)
+app.get("/api/testimonial", viewController.getDataTestimonial)
+
 
 cron.schedule("*/60 * * * * *", () => {
     blogService.updateBlogTimers();
 });
-
-app.get("/blog-detail/:id", blogController.blogDetail)
-app.get("/blog-form", blogController.blogForm)
-app.get("/blogs", blogController.blogs)
-app.get("/blog-edit/:id", blogController.blogEdit)
+app.get("/blog-detail/:id", blogController.renderBlogDetail)
+app.get("/blog-form", blogController.renderBlogForm)
+app.get("/blogs", blogController.renderBlogs)
+app.get("/blog-edit/:id", blogController.renderBlogEdit)
 app.post("/api/blogs", uploadFile.single('imageurl'), blogController.addBlog);
 app.put('/blog-edit/:id', uploadFile.single('imageurl'), blogController.updateBlog);
 app.delete('/blog-delete/:id', blogController.deleteBlog);

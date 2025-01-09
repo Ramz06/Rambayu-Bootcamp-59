@@ -6,39 +6,53 @@ const authValidation = require("../validation/auth-validation")
 const db = require("../../models");
 const Blog = db.Blog;
 
-const blogs = async (req, res) => {   
+const renderBlogs = async (req, res) => {   
     try {
         const result = await Blog.findAll();
         const blogs = blogService.getBlogs(result);
-        res.render("blogs", { blogs })
+
+        const user = await authValidation(req.session.user)
+        if (user) {
+            res.render("blogs", { blogs, activePage: 'blogs', user : user.username})
+        } else {
+            res.render("blogs", { blogs, activePage : 'blogs'})
+        }
       } catch (err) {
         console.error(err.message);
         res.status(500).send('Server Error');
       }
 }
 
-const blogDetail = async (req, res) => {
+const renderBlogDetail = async (req, res) => {
     const id = req.params.id;
   try {
     const result = await Blog.findByPk(id);
-    const blog = result;
+    const blog = blogService.getBlog(result);
+    if (!blog) {
+        return res.status(404).json({ message: "Blog not found" });
+    }
 
-    res.render("blog-detail", {blog});
+    const user = await authValidation(req.session.user);
+    if (user) {
+        res.render("blog-detail", {blog, user: user.username});
+    } else {
+        res.render("blog-detail", {blog});
+    }
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
   }
 }
 
-const blogForm = async (req, res) => {
+const renderBlogForm = async (req, res) => {
     const user = await authValidation(req.session.user)
     if (!user) {
         return res.status(401).json({ message: "Unauthorized" });
     }
-    res.render("blog-form")
+    res.render("blog-form", {user: user.username})
 }
 
-const blogEdit = async (req, res) => {
+const renderBlogEdit = async (req, res) => {
     const user = await authValidation(req.session.user)
     if (!user) {
         return res.status(401).json({ message: "Unauthorized" });
@@ -48,7 +62,7 @@ const blogEdit = async (req, res) => {
     if (blog.username !== user.username) {
         return res.status(403).json({ message: "Not Allowed" });
     }
-    res.status(200).render("blog-edit", {blog})
+    res.status(200).render("blog-edit", {blog, user : user.username})
 }
 
 const addBlog = async (req, res) => {
@@ -88,11 +102,16 @@ const addBlog = async (req, res) => {
 const updateBlog = async (req, res) => {
     const { id } = req.params;
     const { title, content } = req.body;
-
+    const user = await authValidation(req.session.user)
+    if (!user) {
+        return res.status(401).json({ message: "Unauthorized" });
+    }
+    const blog = await Blog.findByPk(id);
+    if (blog.username !== user.username) {
+        return res.status(403).json({ message: "Not Allowed" });
+    }
 
     try {
-        // Query UPDATE ke tabel
-        const blog = await db.Blog.findByPk(id);
         if (!blog) {
             return res.status(404).json({ error: 'Blog not found' });
         }
@@ -184,10 +203,10 @@ const blogController = {
     addBlog,
     updateBlog,
     deleteBlog,
-    blogs,
-    blogDetail,
-    blogForm,
-    blogEdit
+    renderBlogs,
+    renderBlogDetail,
+    renderBlogForm,
+    renderBlogEdit
 }
 
 module.exports = blogController;

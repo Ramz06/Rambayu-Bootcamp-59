@@ -1,28 +1,155 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/assets/src/css/pages/blog-detail.css">
-    <link rel="stylesheet" href="/assets/src/css/general/navbar.css">
-</head>
-<body>
-    {{> nav }}
-    <main>
-        {{#if blog}}
-        {{#each blog}}
-            
-        <h1>{{title}}</h1>
-        <section>
-            <img src="/assets/uploads/{{imageurl}}" alt="" class="hero-image" style="width: 100%;">
-            <p>{{description}}</p>
-        </section>
-            
-        {{/each}}
-        {{else}}
-            <h1>blog not found</h1>
-        {{/if}}
-    </main>
-</body>
+<html>
+  <head>
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- Site Metas -->
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="shortcut icon" href="images/favicon.png" type="" />
+
+    <title>Finexo</title>
+
+    <!-- bootstrap core css -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+
+    <!-- fonts style -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- font awesome style -->
+
+    <!-- Custom styles for this template -->
+    <link href="/assets/css/pages/blog-detail.css" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="/assets/css/general/navbar.css" rel="stylesheet" />
+    <link href="/assets/css/general/responsive.css" rel="stylesheet" />
+  </head>
+
+  <body class="sub_page">
+    <!-- about section -->
+    {{> nav}}
+    <section class="about_section layout_padding">
+      <div class="container">
+        <div class="heading_container heading_center">
+          <h2>{{blog.author}}</h2>
+          <p>
+            Duration : {{blog.blogDuration}} | Posted {{blog.postedTime}} ago
+          </p>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="img-box">
+              <img src="/assets/uploads/{{blog.imageurl}}" alt="gambar" />
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="detail-box">
+              <h3>{{blog.title}}</h3>
+              <p>
+                {{blog.content}}
+              </p>
+              <a href="/blogs">
+              Back to blogs
+            </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- end about section -->
+
+    <!-- info section -->
+
+    <section class="info_section layout_padding2">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-lg-3 info_col">
+            <div class="info_contact">
+              <h4>Address</h4>
+              <div class="contact_link_box">
+                <a href="">
+                  <i class="fa fa-map-marker" aria-hidden="true"></i>
+                  <span> Location </span>
+                </a>
+                <a href="">
+                  <i class="fa fa-phone" aria-hidden="true"></i>
+                  <span> Call +01 1234567890 </span>
+                </a>
+                <a href="">
+                  <i class="fa fa-envelope" aria-hidden="true"></i>
+                  <span> demo@gmail.com </span>
+                </a>
+              </div>
+            </div>
+            <div class="info_social">
+              <a href="">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-linkedin" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 info_col">
+            <div class="info_detail">
+              <h4>Info</h4>
+              <p>
+                necessary, making this the first true generator on the Internet.
+                It uses a dictionary of over 200 Latin words, combined with a
+                handful
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-2 mx-auto info_col">
+            <div class="info_link_box">
+              <h4>Links</h4>
+              <div class="info_links">
+                <a class="active" href="index.html"> Home </a>
+                <a class="" href="about.html"> About </a>
+                <a class="" href="service.html"> Services </a>
+                <a class="" href="why.html"> Why Us </a>
+                <a class="" href="team.html"> Team </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 info_col">
+            <h4>Subscribe</h4>
+            <form action="#">
+              <input type="text" placeholder="Enter email" />
+              <button type="submit">Subscribe</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- jQery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <!-- owl slider -->
+    <!-- End Google Map -->
+  </body>
 </html>

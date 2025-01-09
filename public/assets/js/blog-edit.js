@@ -1,13 +1,7 @@
-const enterButton = document.querySelectorAll('.edit-btn');
-enterButton.forEach((button) => {
-    button.addEventListener('click', async (e) => {
-        e.preventDefault();
-        const id = e.target.dataset.id;
-        await enterBlogEdit(id);
-    });
-});
+import alertModal from "./alert-modal.js";
 
-const editForm = document.getElementById('blog-form');
+const editForm = document.getElementById('blog-edit');
+console.log(editForm);
 editForm.addEventListener('submit', async (e) => {
     e.preventDefault(); // Prevent page reload
     console.log('submit');
@@ -42,32 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
   
-
-async function enterBlogEdit(id) {
-    
-    try {
-        const response = await fetch(`http://localhost:3000/blog-edit/${id}`, {
-            method: 'GET',
-        });
-
-        if (response.ok) {
-            window.location.href = `/blog-edit/${id}`;
-        } else if (response.status === 401) {
-            const unauthorizedModal = new bootstrap.Modal(document.getElementById('unauthorizedModal'));
-            unauthorizedModal.show();
-        } else if (response.status === 403) {
-            const notAllowedModal = new bootstrap.Modal(document.getElementById('notAllowedModal'));
-            notAllowedModal.show();
-        } else {
-            const result = await response.json();
-        }
-    } catch (err) {
-        console.error('Error updating blog:', err);
-    }
-}
-
 async function editBlog(id, form) {
-
+    console.log(id);
     try {
         const response = await fetch(`http://localhost:3000/blog-edit/${id}`, {
             method: 'PUT',
@@ -77,8 +47,15 @@ async function editBlog(id, form) {
         if (response.ok) {
             window.location.href = '/blogs';
         } else if (response.status === 401) {
-            const unauthorizedModal = new bootstrap.Modal(document.getElementById('unauthorizedModal'));
-            unauthorizedModal.show();
+            alertModal.unauthorizedAlert();
+            setTimeout(() => {
+              window.location.href = '/blogs';
+            }, 2000);
+        } else if (response.status === 403) {
+            alertModal.forbiddenAlert();
+            setTimeout(() => {
+              window.location.href = '/blogs';
+            }, 2000);
         } else {
             const result = await response.json();
         }

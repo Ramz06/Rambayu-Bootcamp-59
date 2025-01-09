@@ -1,22 +1,27 @@
-document.getElementById('blog-form').addEventListener('click', async (e) => {
-    e.preventDefault(); // Mencegah navigasi default
-    await enterBlogForm();
+document.addEventListener('DOMContentLoaded', () => {
+    const imageInput = document.getElementById('image');
+    console.log(imageInput)
+    const imagePreview = document.getElementById('imagePreview');
+    
+    imageInput.addEventListener('change', (event) => {
+      const file = event.target.files[0];
+
+  
+      if (file) {
+        // Jika ada file yang dipilih, tampilkan preview
+        imagePreview.innerHTML = '';
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const img = document.createElement('img');
+          img.src = e.target.result; // Data URL dari file
+          img.alt = 'Selected Image';
+          img.className = 'img-fluid';
+          imagePreview.appendChild(img);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        // Jika tidak ada file yang dipilih, tampilkan fallback
+        imagePreview.innerHTML = '<span class="text-danger"> *No image selected </span>';
+      }
+    });
   });
-
-async function enterBlogForm() {
-  try {
-    const response = await fetch("/blog-form", { method: "GET" });
-
-    if (response.ok) {
-      window.location.href = "/blog-form"
-    } else if (response.status === 401) {
-        const unauthorizedModal = new bootstrap.Modal(document.getElementById('unauthorizedModal'));
-        unauthorizedModal.show();
-    } else {
-      alert("Terjadi kesalahan. Silakan coba lagi.");
-    }
-  } catch (error) {
-    console.error("Error:", error);
-    alert("Terjadi kesalahan jaringan.");
-  }
-}

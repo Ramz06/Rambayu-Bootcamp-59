@@ -1,37 +1,42 @@
+import alertModal from "./alert-modal.js";
+
 document.addEventListener("DOMContentLoaded", () => {
   const deleteButtons = document.querySelectorAll(".delete-btn");
-
+  
   deleteButtons.forEach((button) => {
     button.addEventListener("click", async (event) => {
       const blogId = button.getAttribute("data-id");
-      try {
-        const response = await fetch(`/blog-delete/${blogId}`, {
-          method: "DELETE", // Gunakan HTTP DELETE
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-
-        if (response.ok) {
-          alert("Blog deleted successfully!");
-          window.location.href = "/blogs"; // Refresh halaman untuk memperbarui daftar
-        } else if (response.status === 401) {
-          const unauthorizedModal = new bootstrap.Modal(
-            document.getElementById("unauthorizedModal")
-          );
-          unauthorizedModal.show();
-        } else if (response.status === 403) {
-          const notAllowedModal = new bootstrap.Modal(
-            document.getElementById("notAllowedModal")
-          );
-          notAllowedModal.show();
+      alertModal.confirmationAlert().then(async (response) => {
+        if (response.isConfirmed) {
+          try {
+            const result = await fetch(`/blog-delete/${blogId}`, {
+              method: "DELETE",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            });
+    
+            if (result.ok) {
+              alertModal.successDeleteBlog();
+              window.location.href = "/blogs"; // Refresh halaman untuk memperbarui daftar
+            } else if (result.status === 401) {
+              alertModal.unauthorizedAlert();
+            } else if (result.status === 403) {
+              alertModal.forbiddenAlert()
+            } else {
+              const error = await response.json();
+              alert(`Error: ${error.message}`);
+            }
+          } catch (err) {
+            console.log(`Failed to delete blog: ${err.message}`);
+          }
+        } else if (response.dismiss === Swal.DismissReason.cancel) {
+          alertModal.cancelDeleteBlog();
         } else {
-          const error = await response.json();
-          alert(`Error: ${error.message}`);
+          console.log("delete decline")
         }
-      } catch (err) {
-        console.log(`Failed to delete blog: ${err.message}`);
-      }
+      
+      });
     });
   });
 });

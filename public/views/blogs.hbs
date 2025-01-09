@@ -1,88 +1,98 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Blogs</title>
-    <link
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
-        rel="stylesheet"
+
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-        .card {
-            width: 18rem;
-            border-radius: 15px;
-        }
-        .truncate {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 3; /* Batasi hingga 3 baris */
-            -webkit-box-orient: vertical;
-        }
-        .centered-card {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100%; /* Agar konten ditengah */
-        }
-        .centered-card img {
-            max-width: 100px;
-            margin: 0 auto;
-        }
-        .card-body .card-text {
-            margin-bottom: 5px; /* Mengurangi jarak antar elemen card-text */
-            font-size: 0.9rem; /* Menyesuaikan ukuran teks jika diinginkan */
-        }
-    </style>
-</head>
-<body>
-    {{> nav }}
-    <div class="container mt-5">
-        <div class="row g-4">
-            {{#if blogs}}
-            <h1 class="text-center">MY Blogs</h1>
-            <!-- Blog Card -->
-            {{#each blogs}}
-            <div class="col-md-4 d-flex justify-content-center">
-                <div class="card border-dashed border-2" style="width: 18rem; height: 70vh;">
-                    <img src="assets/uploads/{{imageurl}}" class="card-img-top" height="40%" style="object-fit: cover;">
-                    <div class="card-body">
-                        <h5 class="card-title"><a href="/blog-detail/{{id}}" class="text-decoration-none text-dark">{{title}}</a></h5>
-                        <p class="card-text truncate">{{content}}</p>
-                        <p class="card-text truncate">Author: {{author}}</p>
-                        <p class="card-text truncate">Duration: {{blogDuration}}</p>
-                        <p class="card-text truncate">Post: {{postedTime}}</p>
-                        <button class="btn btn-dark edit-btn" data-id="{{id}}">Edit</button>
-                        <button class="btn btn-danger delete-btn" data-id="{{id}}">Delete</button>
-                    </div>
-                </div>
-            </div>
-            {{/each}}
-            {{/if}}
-            <!-- Add New Blog Card -->
-            <div class="col-md-4 d-flex justify-content-center">
-                <div class="card centered-card border-dashed border-2" style="width: 18rem; height: 70vh;">
-                    <a href="#" class="text-decoration-none text-dark text-center" id="blog-form">
-                        <img src="assets/icon/plus-icon.png" alt="Add New Blog">
-                        <div class="card-body">
-                            <h5 class="card-title">Add New Blog</h5>
-                        </div>
-                    </a>
-                </div>
-            </div>
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
+    <title>Finexo</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Fonts Style -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome Style -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+
+    <!-- Custom CSS -->
+    <link href="/assets/css/pages/blogs.css" rel="stylesheet" />
+    <link href="/assets/css/general/responsive.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/css/general/navbar.css">
+  </head>
+
+  <body>
+    {{> nav}}
+    <section class="client_section layout_padding">
+      <div class="container">
+        <div class="heading_container heading_center">
+          <h2>
+            My <span>Blogs</span>
+          </h2>
         </div>
-    </div>
-    {{> userActionModal}}
-    <!-- Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    <script src="/assets/js/blog-delete.js"></script>
-    <script src="/assets/js/blog-form.js"></script>
-    <script src="/assets/js/blog-edit.js"></script>
-    <script type="module" src="/assets/js/user.js"></script>
-</body>
+        <div class="row">
+            {{#if blogs}}
+                {{#each blogs}}
+            <div class="col-md-6 mb-4 product-container">
+            <div class="box bg-white p-4 shadow-sm border border-dark">
+              <div class="img-box mb-3 shadow-sm">
+                <img src="/assets/uploads/{{imageurl}}" alt="Client 2" />
+              </div>
+              <div class="detail-box">
+                <h4><a href="/blog-detail/{{id}}">{{title}}</a></h4>
+                <p>Author : {{author}}</p>
+                <p>Post : {{postedTime}} ago</p>
+                <i class="fa fa-quote-left mb-2" aria-hidden="true"></i>
+                <p class="content-box">{{content}}</p>
+                <div class="row ">
+                  <div class="col-sm-3 w-50">
+                    <button class="btn btn-secondary edit-btn blog-btn" data-id="{{id}}">edit</button>
+                  </div>
+                  <div class="col-sm-3 w-50">
+                    <button class="btn btn-secondary delete-btn blog-btn" data-id="{{id}}">delete</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+                {{/each}}
+            {{/if}}
+          <div class="col-md-6 mb-4">
+            <div class="box bg-white p-4 shadow-sm border border-dark">
+              <div class="detail-box text-center">
+                <a href="/blog-form" id="blog-form">
+                <img src="/assets/icon/plus-icon.png" alt="" srcset="">
+                <h2 class="text-dark">Add New Blogs</h2>
+                </a>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/assets/js/alert-modal.js" type="module"></script>
+    <script src="./assets/js/user.js" type="module"></script>
+    <script src="./assets/js/blogs.js" type="module"></script>
+    <script src="./assets/js/blog-delete.js" type="module"></script>
+  </body>
+
 </html>

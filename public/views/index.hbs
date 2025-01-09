@@ -1,47 +1,96 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Web</title>
-  <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
-  <link rel="stylesheet" href="./assets/css/general/navbar.css" />
-  <link rel="stylesheet" href="./assets/css/pages/index.css" />
-</head>
-<body>
-  {{> nav}}
-  <div class="profile">
-    <section class="profile-text">
-      <h1 class="text-center mb-3">Welcome to My Hut</h1>
-      <p>
-        <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo nulla consectetur mollitia atque cumque laboriosam debitis nisi at eius quae! Id sunt sequi ipsum maiores qui tempora necessitatibus! Suscipit, doloremque.</span>
-        <span>Adipisci veniam, amet iusto ut, repellat quae, illo blanditiis eum id ducimus cupiditate. Eaque, quaerat? Optio et illo eum cum. Facere neque velit porro, quibusdam exercitationem nemo dolorum quod odio.</span>
-      </p>
-      <div class="profile-icons d-flex align-items-center">
-        <button class="btn btn-dark">
-          <a href="/contact" style="color: white;">Contact Me</a>
-        </button>
-        <a href="#" class="ms-3">Download CV <i class="fas fa-download"></i></a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Web</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./assets/css/pages/index.css" />
+    <link rel="stylesheet" href="/assets/css/general/navbar.css">
+  </head>
+  <body>
+    <div class="hero_area">
+
+      <div class="hero_bg_box">
+        <div class="bg_img_box">
+          <img src="/assets/images/hero-bg.png" alt="" />
+        </div>
       </div>
-      <div class="social-icons mt-3">
-        <a href="#"><i class="fab fa-linkedin"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-      </div>
-    </section>
-    <section class="profile-card">
-      <img src="./assets/images/photo.jpeg" alt="Profile Picture">
-      <h3>Rambayu Rimbajati</h3>
-      <p>Fullstack Developer</p>
-    </section>
-  </div>
-  {{> userActionModal}}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-  <script src="./assets/js/user.js" type="module"></script>
-</body>
+
+      <!-- header section strats -->
+      {{> nav}}
+      <!-- end header section -->
+      <!-- slider section -->
+      <section class="slider_section">
+        <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="detail-box">
+                      <h1>
+                        Welcome
+                        <br />
+                        To My Hut
+                      </h1>
+                      <p>
+                        Explicabo esse amet tempora quibusdam laudantium,
+                        laborum eaque magnam fugiat hic? Esse dicta aliquid
+                        error repudiandae earum suscipit fugiat molestias,
+                        veniam, vel architecto veritatis delectus repellat modi
+                        impedit sequi.
+                      </p>
+                      <div
+                        class="profile-icons d-flex align-items-center"
+                      ></div>
+                      <button class="btn btn-info">
+                        <a href="/contact" class="text-dark fw-semibold">Contact Me</a>
+                      </button>
+                      <a href="#" class="ms-3">Download CV
+                        <i class="fas fa-download"></i>
+                      </a>
+                    </div>
+                    <div class="social-icons mt-3 fs-3">
+                      <a href="https://www.linkedin.com/in/rambayu-rimbajati-157b92280/"><i class="fab fa-linkedin"></i></a>
+                      <a href="https://www.instagram.com/rrambayu/"><i class="fab fa-instagram"></i></a>
+                      <a href="https://www.facebook.com/rambayu.rimbajati.5"><i class="fab fa-facebook"></i></a>
+                      <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+                    </div>
+                  </div>
+                <div class="col-md-6">
+                  <div class="img-box text-center">
+                    <img
+                      src="assets/images/photo.jpeg"
+                      alt=""
+                      style="object-fit: cover;"
+                      class="rounded-circle"
+                    />
+                    <h3 class="text-light">Rambayu Rimbajati</h3>
+                    <p class="text-light">Fullstack Developer</p>
+                  </div>
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </section>
+      <!-- end slider section -->
+    </div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/assets/js/alert-modal.js" type="module"></script>
+    <script src="./assets/js/user.js" type="module"></script>
+  </body>
 </html>

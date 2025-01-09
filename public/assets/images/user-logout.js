@@ -1,17 +1,16 @@
+import alertModal from "../js/alert-modal.js";
+
 async function logout() {
   try {
     const response = await fetch("/users/logout", { method: "DELETE" });
 
     if (response.ok) {
-      const successModal = new bootstrap.Modal(
-        document.getElementById("successLogoutModal")
-      );
-      successModal.show();
+      alertModal.successLogoutUser();
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     } else if (response.status === 401) {
-      const unauthorizedModal = new bootstrap.Modal(
-        document.getElementById("unauthorizedModal")
-      );
-      unauthorizedModal.show();
+      alertModal.unauthorizedAlert();
     } else {
       alert("Terjadi kesalahan. Silakan coba lagi.");
     }

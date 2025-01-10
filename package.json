@@ -6,7 +6,8 @@
   "license": "MIT",
   "type": "commonjs",
   "scripts": {
-    "dev": "nodemon src/app.js"
+    "dev": "nodemon src/app.js",
+    "build": "node src/app.js"
   },
   "dependencies": {
     "@vercel/node": "^4.0.0",

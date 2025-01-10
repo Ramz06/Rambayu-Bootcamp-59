@@ -9,6 +9,7 @@
     "dev": "nodemon src/app.js"
   },
   "dependencies": {
+    "@vercel/node": "^4.0.0",
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
@@ -22,7 +23,7 @@
     "pg": "^8.13.1",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.37.5",
-    "sweetalert2": "^11.15.10"
+    "sweetalert2": "^11.6.13"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",

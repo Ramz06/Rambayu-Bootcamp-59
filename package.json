@@ -5,9 +5,12 @@
   "author": "Ramz06",
   "license": "MIT",
   "type": "commonjs",
+  "engines": {
+    "node": "18.x"
+  },
   "scripts": {
-    "dev": "nodemon src/app.js",
-    "build": "node src/app.js"
+    "dev": "nodemon app.js",
+    "build": "node app.js"
   },
   "dependencies": {
     "@vercel/node": "^4.0.0",

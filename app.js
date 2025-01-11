@@ -12,14 +12,14 @@ const {registerUserValidation, loginUserValidation} = require("./src/validation/
 const blogService = require("./src/service/blog-service")
 const port = 3000;
 
-app.set("views", path.join(__dirname, '..', 'public', 'views'));
+app.set("views", path.join(__dirname, 'public', 'views'));
 app.set("view engine", "hbs");
-hbs.registerPartials(path.join(__dirname, '..', 'public', 'views', 'partials'));
+hbs.registerPartials(path.join(__dirname, 'public', 'views', 'partials'));
 hbs.registerHelper('eq', (a, b) => a === b);
 
 // middleware
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, '..', 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json()); 
 app.use(sessionMiddleware);
 
@@ -31,9 +31,9 @@ app.get("/testimonial", viewController.testimonial)
 app.get("/api/testimonial", viewController.getDataTestimonial)
 
 
-cron.schedule("*/60 * * * * *", () => {
-    blogService.updateBlogTimers();
-});
+// cron.schedule("*/60 * * * * *", () => {
+//     blogService.updateBlogTimers();
+// });
 app.get("/blog-detail/:id", blogController.renderBlogDetail)
 app.get("/blog-form", blogController.renderBlogForm)
 app.get("/blogs", blogController.renderBlogs)

@@ -3,13 +3,13 @@ const app = express();
 const path = require("path");
 const hbs = require("hbs");
 const cron = require("node-cron");
-const userController = require("./controllers/user-controller")
-const blogController = require("./controllers/blog-controller")
-const viewController = require("./controllers/views-controller")
-const uploadFile = require("./middlewares/upload-middleware")
-const sessionMiddleware = require("./middlewares/session-middleware")
-const {registerUserValidation, loginUserValidation} = require("./validation/user-validation")
-const blogService = require("./service/blog-service")
+const userController = require("./src/controllers/user-controller")
+const blogController = require("./src/controllers/blog-controller")
+const viewController = require("./src/controllers/views-controller")
+const uploadFile = require("./src/middlewares/upload-middleware")
+const sessionMiddleware = require("./src/middlewares/session-middleware")
+const {registerUserValidation, loginUserValidation} = require("./src/validation/user-validation")
+const blogService = require("./src/service/blog-service")
 const port = 3000;
 
 app.set("views", path.join(__dirname, '..', 'public', 'views'));

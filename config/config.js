@@ -1,5 +1,6 @@
 
 const dotenv = require("dotenv");
+const pg = require("pg")
 dotenv.config();
 
 module.exports = {
